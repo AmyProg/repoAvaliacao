@@ -40,16 +40,31 @@ public class MedicamentoBn {
 		this.medicamento = medicamento;
 	}
 
-	public String salvar() {
+	public String salvar(){
 		try {
 			rn.salvar(medicamento);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "";
-		}
+		} 
 		return "listMedicamentos";
 	}
-
 	
+	public String editar(String idParam){
+		Long id = Long.parseLong(idParam);
+		medicamento = rn.buscarPorId(id);
+		return "cadMedicamentos";
+	}
+	
+	public String excluir(String idParam){
+		Long id = Long.parseLong(idParam);
+		try {
+			rn.excluir(id);
+			medicamentos = null;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 
 }
