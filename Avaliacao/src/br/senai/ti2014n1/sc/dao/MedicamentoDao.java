@@ -21,6 +21,26 @@ public class MedicamentoDao extends Dao {
 		} 
 
 	}
+	public List<Medicamento> listarTodos(){
++		List<Medicamento> medicamentos = new ArrayList<Medicamento>();
++		try {
++			PreparedStatement ps = getConnection().prepareStatement(SELECT);
++			ResultSet rs = ps.executeQuery();
++			while (rs.next()){
++				Medicamento medicamento = new Medicamento();
++				medicamento.setNome(rs.getString("nome"));
++				medicamento.setDosagem(rs.getString("dosagem"));
++				medicamento.setIntervalo(rs.getString("intervalo"));
++				medicamento.setDuracao(rs.getString("duracao"));
++				medicamento.setId(rs.getLong("id"));
++				medicamentos.add(medicamento);				
++			}			
++		} catch (Exception e) {
++			e.printStackTrace();
++			System.out.println("Erro ao executar o select de medicamentos" + e);
++		}
++		return medicamentos;
++	}
 
 	
 }

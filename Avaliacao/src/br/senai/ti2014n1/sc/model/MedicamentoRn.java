@@ -29,5 +29,9 @@ public class MedicamentoRn {
 		dao.salvar(medicamento);
 	}
 
+	public List<Medicamento> listar() {
+		return dao.listarTodos();
+	}
 
+	
 }
